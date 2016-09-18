@@ -70,6 +70,7 @@ void flash_LEDS(){
     PLIB_PORTS_PinToggle(PORTS_ID_0, PORT_CHANNEL_A, PORTS_BIT_POS_3);
 }
 
+
 int appSendTimerValToMsgQ(unsigned int millisecondsElapsed){
     
 #ifdef DEBUG
@@ -104,6 +105,8 @@ void APP1_Initialize ( void )
     dbgOutputLoc(INIT);
 #endif    
     
+    my_usart = DRV_USART_Open(DRV_USART_INDEX_0, DRV_IO_INTENT_READWRITE);
+    
     app1Data.state = APP1_STATE_INIT;
     
 }
@@ -133,6 +136,7 @@ void APP1_Tasks ( void )
             if (myQueue == NULL){
                 error_LEDS();
             }
+
             
             my_timer = xTimerCreate("my_timer", (50 / portTICK_PERIOD_MS), pdTRUE, (void *) 0, vTimerCallback);
             if (my_timer == NULL){
@@ -141,7 +145,8 @@ void APP1_Tasks ( void )
             if (xTimerStart(my_timer, 5) != pdPASS){
                 error_LEDS();
             }   // check if actually started
-                                
+
+            
             if (appInitialized)
             {
                 app1Data.state = APP1_STATE_SERVICE_TASKS;
@@ -154,18 +159,46 @@ void APP1_Tasks ( void )
 #ifdef DEBUG
             dbgOutputLoc(STATE_RUN);
 #endif            
+
+            /*
+            xQueueSend(myQueue, name_current, 0);
             
-            char rx = '\0';
             
-            xQueueReceive(myQueue, &rx, portMAX_DELAY);
+            if ((xQueueSend(myQueue, name_current, 0) != pdPASS)){}
+            else{
+                if (*name_current == NULL){
+                    name_current = name_original;
+                }
+                name_current++;
+            }
+            */
+            
+            DRV_USART_BUFFER_HANDLE buf_handle;
+           
+            if (xQueueReceive(myQueue, &rx, portMAX_DELAY)){
+                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &rx, 1);
+            }
+            
+            if (buf_handle == DRV_USART_BUFFER_HANDLE_INVALID){
+                dbgOutputLoc(8);
+//                if (*name_current == NULL){
+//                    name_current = name_original;
+//                }
+//                name_current++;
+            }
+
+
 #ifdef DEBUG
             dbgOutputLoc(Q_READ);
 #endif
             
 #ifdef UART           
-            if (!(DRV_USART_TRANSFER_STATUS_TRANSMIT_FULL & DRV_USART0_TransferStatus())){
-                DRV_USART0_WriteByte(rx);
-            }
+
+//            if (DRV_USART_Status(my_usart) == SYS_STATUS_READY){
+//                SYS_INT_SourceEnable (INT_SOURCE_USART_1_TRANSMIT);
+//                DRV_USART0_WriteByte(rx);
+//            }
+            
 #endif
             
 #ifdef DEBUG            

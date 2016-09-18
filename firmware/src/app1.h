@@ -122,9 +122,11 @@ typedef struct
 APP1_DATA app1Data;
 TimerHandle_t my_timer;
 QueueHandle_t myQueue;
+DRV_HANDLE my_usart;
 
 char* name_original;
 char* name_current;
+char rx;
 
 
 

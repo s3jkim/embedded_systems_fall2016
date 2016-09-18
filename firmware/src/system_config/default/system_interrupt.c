@@ -63,12 +63,27 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <sys/attribs.h>
 #include "app1.h"
 #include "system_definitions.h"
+#include "debug.h"
+#include "app1.h"
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: System Interrupt Vector Functions
 // *****************************************************************************
 // *****************************************************************************
+void IntHandlerDrvUsartInstance0(void)
+{
+//    char x = 'x';
+//    DRV_USART_BUFFER_HANDLE buf_handle;
+//    DRV_USART_BufferAddWrite(my_usart, &buf_handle, &x, 1);
+
+    dbgOutputLoc(9);
+    
+    DRV_USART_TasksTransmit(sysObj.drvUsart0);
+    DRV_USART_TasksReceive(sysObj.drvUsart0);
+    DRV_USART_TasksError(sysObj.drvUsart0);
+}
+ 
   
 /*******************************************************************************
  End of File
