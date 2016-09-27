@@ -73,18 +73,29 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 void IntHandlerDrvUsartInstance0(void)
 {
-//    char x = 'x';
-//    DRV_USART_BUFFER_HANDLE buf_handle;
-//    DRV_USART_BufferAddWrite(my_usart, &buf_handle, &x, 1);
-
+    
+    if (SYS_INT_SourceStatusGet(INT_SOURCE_USART_1_TRANSMIT)){
+        UART_Transmit_Packaging();
+    }
+    else if (SYS_INT_SourceStatusGet(INT_SOURCE_USART_1_RECEIVE)){
+        UART_Receive_Packaging();
+    }
+        
     dbgOutputLoc(9);
     
     DRV_USART_TasksTransmit(sysObj.drvUsart0);
     DRV_USART_TasksReceive(sysObj.drvUsart0);
     DRV_USART_TasksError(sysObj.drvUsart0);
+    
+    tx_checksum = 0;
+    rx_checksum = 0;
 }
- 
-  
+
+void IntHandlerDrvAdc(void){
+    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_ADC_1);
+    SENSOR_ADC_Average();
+}
+
 /*******************************************************************************
  End of File
 */

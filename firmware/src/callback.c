@@ -13,3 +13,8 @@ void vTimerCallback(TimerHandle_t xtimer){
     }
     appSendTimerValToMsgQ(iteration_50ms);
 }
+
+void vSensorTimerCallback(TimerHandle_t ytimer){
+    PLIB_ADC_SampleAutoStartEnable(ADC_ID_1);
+    
+}

@@ -87,8 +87,36 @@ build/default/production/_ext/1688732426/system_interrupt.o:  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/int/processor/../templates/int_VariableOffset_Unsupported.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/int/processor/../templates/int_SoftwareNMI_Unsupported.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/system/int/sys_int_mapping.h  \
- ../src/system_config/default/framework/driver/usart/drv_usart_static.h  \
- ../src/system_config/default/framework/driver/usart/src/drv_usart_static_local.h  \
+ ../src/system_config/default/framework/driver/adc/drv_adc_static.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/plib_adc.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/adc_processor.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/adc_p32xxxx.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/adc_p32mx795f512l.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_EnableControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_StopInIdle_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_CalibrationControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_MuxInputScanSelect_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_MuxInputScanSelectExtended_Unsupported.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_VoltageReference_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_MuxChannel0PositiveInput_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_MuxChannel0NegativeInput_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_MuxInputScanControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplingModeControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplesPerInterruptSelect_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplingAutoStart_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplingControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplingAcquisitionTime_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_SamplingStatus_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionClock_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionClockSource_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionTriggerSource_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionStopSequenceControl_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ConversionStatus_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ResultFormat_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ResultBufferMode_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ResultBufferFillStatus_Default.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/adc/processor/../templates/adc_ResultGetByIndex_Default.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/driver/usart/drv_usart.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/driver/driver_common.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/usart/plib_usart.h  \
@@ -183,23 +211,6 @@ build/default/production/_ext/1688732426/system_interrupt.o:  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/dma/processor/../templates/dma_ChannelXCellSize_Default.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/dma/processor/../templates/dma_ChannelXCellProgressPointer_Default.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/dma/processor/../templates/dma_ChannelXPatternData_Default.h  \
- ../../../../../../../microchip/harmony/v1_08_01/framework/driver/usart/src/drv_usart_variant_mapping.h  \
- ../../../../../../../microchip/harmony/v1_08_01/framework/osal/osal.h  \
- ../../../../../../../microchip/harmony/v1_08_01/framework/osal/osal_definitions.h  \
- ../../../../../../../microchip/harmony/v1_08_01/framework/osal/src/osal_freertos.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/FreeRTOS.h  \
- ../src/system_config/default/FreeRTOSConfig.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/projdefs.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/portable.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/deprecated_definitions.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MX/portmacro.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/mpu_wrappers.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/queue.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/semphr.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/queue.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/task.h  \
- ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/list.h  \
- ../../../../../../../microchip/harmony/v1_08_01/framework/system/debug/sys_debug.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/system/ports/sys_ports.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/ports/plib_ports.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/ports/processor/ports_processor.h  \
@@ -229,6 +240,18 @@ build/default/production/_ext/1688732426/system_interrupt.o:  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/ports/processor/../templates/ports_ChannelChangeNoticeMethod_Unsupported.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/ports/processor/../templates/ports_ChangeNoticeEdgeControl_Unsupported.h  \
  ../../../../../../../microchip/harmony/v1_08_01/framework/peripheral/ports/processor/../templates/ports_ChangeNoticeEdgeStatus_Unsupported.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/FreeRTOS.h  \
+ ../src/system_config/default/FreeRTOSConfig.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/projdefs.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/portable.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/deprecated_definitions.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MX/portmacro.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/mpu_wrappers.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/task.h  \
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/list.h  \
+ ../src/sensor.h  \
  ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/timers.h  \
  ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/task.h  \
- ../src/system_config/default/system_definitions.h 
+ ../../../../../../../microchip/harmony/v1_08_01/third_party/rtos/FreeRTOS/Source/include/queue.h  \
+ ../src/system_config/default/system_definitions.h  \
+../src/debug.h 

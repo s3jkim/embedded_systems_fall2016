@@ -250,7 +250,7 @@
       <Template>
         <Name>system_init.c</Name>
         <Path>Source Files/app/system_config/default</Path>
-        <Checksum>899649D1AC1F50FA63AA14369925A5E8</Checksum>
+        <Checksum>B54A7F535E23A4C6E0148DB10355E7C5</Checksum>
       </Template>
       <Template>
         <Name>main.c</Name>
@@ -259,7 +259,12 @@
       <Template>
         <Name>system_interrupt_a.S</Name>
         <Path>Source Files/app/system_config/default</Path>
-        <Checksum>5C0D911C19B5E425D7F0FB89E579F457</Checksum>
+        <Checksum>2AADE7885E66E00DBB7FE911439FFA49</Checksum>
+        <ProjectFileChecksum>7435D53AC85A38DF3EE04F990457F078</ProjectFileChecksum>
+      </Template>
+      <Template>
+        <Name>sensor.c</Name>
+        <Path>Source Files/app</Path>
       </Template>
       <Template>
         <Name>app1.c</Name>
@@ -268,12 +273,22 @@
       <Template>
         <Name>system_definitions.h</Name>
         <Path>Header Files/app/system_config/default</Path>
-        <Checksum>03A2FB5C0661770053D7C4905BC30E83</Checksum>
+        <Checksum>A7300C68C609C073F57055E972BF9B22</Checksum>
       </Template>
       <Template>
         <Name>system_exceptions.c</Name>
         <Path>Source Files/app/system_config/default</Path>
         <Checksum>C111969CA43D6CEA1E9E33A6164E7AE0</Checksum>
+      </Template>
+      <Template>
+        <Name>drv_adc_static.h</Name>
+        <Path>Header Files/app/system_config/default/framework/driver/adc</Path>
+        <Checksum>39EAC0A0C17C80CCB8E38FE805153E0A</Checksum>
+      </Template>
+      <Template>
+        <Name>drv_adc_static.c</Name>
+        <Path>Source Files/app/system_config/default/framework/driver/adc/src</Path>
+        <Checksum>8E8F449D031994B37DA4CCE736B8A8B4</Checksum>
       </Template>
       <Template>
         <Name>app1.h</Name>
@@ -287,12 +302,16 @@
       <Template>
         <Name>system_tasks.c</Name>
         <Path>Source Files/app/system_config/default</Path>
-        <Checksum>CCAC804D0364435F03AAEEA18A639BFF</Checksum>
+        <Checksum>E3ADD26E18DD9591109110AFE2AF05EA</Checksum>
+      </Template>
+      <Template>
+        <Name>sensor.h</Name>
+        <Path>Header Files/app</Path>
       </Template>
       <Template>
         <Name>system_config.h</Name>
         <Path>Header Files/app/system_config/default</Path>
-        <Checksum>F18414D1F552F3673045A2364D7183BC</Checksum>
+        <Checksum>CCF5AD1B94F4DBA7533E3B29B0A9A5D2</Checksum>
       </Template>
       <Template>
         <Name>sys_clk_static.h</Name>
@@ -302,7 +321,7 @@
       <Template>
         <Name>system_interrupt.c</Name>
         <Path>Source Files/app/system_config/default</Path>
-        <Checksum>7F07AAE083EC692D235255937EABF0AB</Checksum>
+        <Checksum>CA5960837C6D117355A8989962530F2F</Checksum>
         <ProjectFileChecksum>EEA6C75CE972E2750C4B2032CC30B116</ProjectFileChecksum>
       </Template>
       <Template>

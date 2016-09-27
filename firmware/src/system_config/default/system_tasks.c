@@ -55,6 +55,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system_config.h"
 #include "system_definitions.h"
 #include "app1.h"
+#include "sensor.h"
 
 
 // *****************************************************************************
@@ -67,6 +68,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
  
 static void _SYS_Tasks ( void );
 static void _APP1_Tasks(void);
+static void _SENSOR_Tasks(void);
 
 
 // *****************************************************************************
@@ -93,6 +95,11 @@ void SYS_Tasks ( void )
     /* Create OS Thread for APP1 Tasks. */
     xTaskCreate((TaskFunction_t) _APP1_Tasks,
                 "APP1 Tasks",
+                1024, NULL, 1, NULL);
+
+    /* Create OS Thread for SENSOR Tasks. */
+    xTaskCreate((TaskFunction_t) _SENSOR_Tasks,
+                "SENSOR Tasks",
                 1024, NULL, 1, NULL);
 
     /**************
@@ -138,6 +145,23 @@ static void _APP1_Tasks(void)
     while(1)
     {
         APP1_Tasks();
+    }
+}
+
+
+/*******************************************************************************
+  Function:
+    void _SENSOR_Tasks ( void )
+
+  Summary:
+    Maintains state machine of SENSOR.
+*/
+
+static void _SENSOR_Tasks(void)
+{
+    while(1)
+    {
+        SENSOR_Tasks();
     }
 }
 

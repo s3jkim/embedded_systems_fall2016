@@ -46,6 +46,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #ifndef _APP1_H
 #define _APP1_H
 
+
+#define IR_LENGTH                       2
+#define PIXY_LENGTH                     20
+#define WIFLY_LENGTH                    2
+#define UART_TO_CONTROL_LENGTH          2
+#define SENSOR_TO_CONTROL_LENGTH        4
+#define CONTROL_TO_MOTOR_LENGTH         1
+
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
@@ -86,6 +95,30 @@ extern "C" {
     determine the behavior of the application at various times.
 */
 
+typedef enum{
+    ROVER_1=0,
+    ROVER_2,
+    IR,
+    PIXY,
+    MOTOR_CTL,
+    SENSOR_TO_CONTROL,
+    UART_TO_CONTROL,
+    UART_TO_SENSOR,
+    CONTROL_TO_MOTOR,
+} MESSAGE_SOURCE_DESTINATION;
+    
+    
+struct msg_header{
+    char source;
+    char destination;
+    short sequence;
+}wifly_msg_header, wifly_rx_msg_header, ir_msg_header, ir_rx_msg_header;
+
+
+struct msg_footer{
+    short checksum;
+}wifly_msg_footer, wifly_rx_msg_footer, ir_msg_footer, ir_rx_msg_footer;
+
 typedef enum
 {
 	/* Application's state machine's initial state. */
@@ -124,11 +157,19 @@ TimerHandle_t my_timer;
 QueueHandle_t myQueue;
 DRV_HANDLE my_usart;
 
+//msg_header wifly_msg_header;
+//msg_footer wifly_msg_footer;
+short wifly_msg_data, wifly_rx_msg_data;
+short ir_msg_data, ir_rx_msg_data;
+
 char* name_original;
 char* name_current;
 char rx;
 
-
+short tx_sequence, rx_sequence;
+short tx_checksum, rx_checksum;
+short ir_tx_sequence, ir_rx_sequence;
+short ir_tx_checksum, ir_rx_checksum;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -177,6 +218,9 @@ char rx;
 
 void APP1_Initialize ( void );
 void error_LEDS();
+
+void UART_Transmit_Packaging();
+void UART_Receive_Packaging();
 
 
 /*******************************************************************************

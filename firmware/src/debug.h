@@ -9,6 +9,11 @@
 #define DEBUG_WRITE         6
 #define CALLBACK            7
 
+#define ADC0                20
+#define ADC1                21
+#define ADC2                22
+#define ADC3                23
+
 void dbgOutputVal(unsigned char outVal);
 void dbgOutputLoc(unsigned char outVal);
 void halt();

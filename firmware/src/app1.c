@@ -55,7 +55,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "app1_public.h"
 
 #define UART
-#define DEBUG
+//#define DEBUG
 
 
 void error_LEDS(){
@@ -77,13 +77,17 @@ int appSendTimerValToMsgQ(unsigned int millisecondsElapsed){
     dbgOutputLoc(CALLBACK);
 #endif
     
+//    DRV_ADC_Start(void);
+    
     if (*name_current == NULL){
         name_current = name_original;
     }
-
-// show plassmann for milestone 1 to demonstrate error checking
-//    if(millisecondsElapsed == 50)
-//        error_LEDS();
+    
+    DRV_USART_BUFFER_HANDLE rx_buf_handle;
+    DRV_USART_BufferAddRead(my_usart, &rx_buf_handle, &wifly_rx_msg_header, 4);
+    DRV_USART_BufferAddRead(my_usart, &rx_buf_handle, &wifly_rx_msg_data, 2);
+    DRV_USART_BufferAddRead(my_usart, &rx_buf_handle, &wifly_rx_msg_footer, 2);
+    
     
     xQueueSendFromISR(myQueue, name_current, NULL);
     
@@ -93,6 +97,42 @@ int appSendTimerValToMsgQ(unsigned int millisecondsElapsed){
     
     name_current++;
 }
+
+
+
+void UART_Transmit_Packaging(){
+    wifly_msg_header.source = ROVER_1;
+    wifly_msg_header.destination = ROVER_2;
+    wifly_msg_header.sequence = tx_sequence;
+
+    tx_checksum = tx_checksum + wifly_msg_header.source + wifly_msg_header.destination + wifly_msg_header.sequence;
+    tx_checksum += wifly_msg_data;
+    tx_checksum += tx_checksum;
+
+    wifly_msg_footer.checksum = tx_checksum;
+
+    tx_sequence++;
+}
+
+void UART_Receive_Packaging(){
+    rx_checksum = wifly_rx_msg_header.source + wifly_rx_msg_header.destination + wifly_rx_msg_header.sequence;
+    rx_checksum += wifly_rx_msg_data;
+    rx_checksum += wifly_rx_msg_footer.checksum;
+
+    /*
+    if (rx_checksum != wifly_rx_msg_footer.checksum){
+        // if the checksums do not match -- bad data was received
+        error_LEDS();
+    }
+    if (rx_sequence != wifly_rx_msg_header.sequence){
+        // if the sequence data does not match -- data was dropped somewhere
+        error_LEDS();
+    }
+      */
+    rx_sequence++;
+}
+
+
 
 void APP1_Initialize ( void )
 {
@@ -106,6 +146,7 @@ void APP1_Initialize ( void )
 #endif    
     
     my_usart = DRV_USART_Open(DRV_USART_INDEX_0, DRV_IO_INTENT_READWRITE);
+ //   DRV_ADC_Open(void);
     
     app1Data.state = APP1_STATE_INIT;
     
@@ -121,6 +162,10 @@ void APP1_Tasks ( void )
         case APP1_STATE_INIT:
         {
             bool appInitialized = true;
+            tx_sequence = 0;
+            tx_checksum = 0;
+            rx_sequence = 0;
+            rx_checksum = 0;
             
             PLIB_PORTS_PinWrite(PORTS_ID_0, PORT_CHANNEL_C, 1, 1);
             PLIB_PORTS_PinWrite(PORTS_ID_0, PORT_CHANNEL_A, 3, 1);
@@ -136,8 +181,7 @@ void APP1_Tasks ( void )
             if (myQueue == NULL){
                 error_LEDS();
             }
-
-            
+   
             my_timer = xTimerCreate("my_timer", (50 / portTICK_PERIOD_MS), pdTRUE, (void *) 0, vTimerCallback);
             if (my_timer == NULL){
                 error_LEDS();
@@ -173,10 +217,16 @@ void APP1_Tasks ( void )
             }
             */
             
-            DRV_USART_BUFFER_HANDLE buf_handle;
-           
+            DRV_USART_BUFFER_HANDLE buf_handle;            
+            
             if (xQueueReceive(myQueue, &rx, portMAX_DELAY)){
-                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &rx, 1);
+//                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &rx, 1);
+                
+                // TODO: have to check if buf_handle comes back invalid 
+                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &wifly_msg_header, 4);
+                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &wifly_msg_data, 2);
+            
+                DRV_USART_BufferAddWrite(my_usart, &buf_handle, &wifly_msg_footer, 2);
             }
             
             if (buf_handle == DRV_USART_BUFFER_HANDLE_INVALID){
@@ -194,10 +244,6 @@ void APP1_Tasks ( void )
             
 #ifdef UART           
 
-//            if (DRV_USART_Status(my_usart) == SYS_STATUS_READY){
-//                SYS_INT_SourceEnable (INT_SOURCE_USART_1_TRANSMIT);
-//                DRV_USART0_WriteByte(rx);
-//            }
             
 #endif
             
@@ -216,7 +262,7 @@ void APP1_Tasks ( void )
     }
 }
 
- 
+
 
 /*******************************************************************************
  End of File
